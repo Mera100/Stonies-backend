@@ -1,22 +1,36 @@
 package life.majd.stonies.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import life.majd.stonies.domain.Stone;
+import life.majd.stonies.service.StoneService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/stone")
+@RequiredArgsConstructor
 public class StoneController {
 
-    // @TODO Get All Stones
+    private final StoneService stoneService;
 
+    @GetMapping
+    public List<Stone> getAllStone() {
+        return stoneService.getAllStones();
+    }
 
-    // @TODO Save a new Stone
+    @PostMapping
+    public void saveStone(Stone stone) {
+        stoneService.addStone(stone);
+    }
 
+    @GetMapping("/{id}")
+    public Stone getStoneById(@PathVariable String id) {
+        return stoneService.getStone(id);
+    }
 
-    // @TODO Get a stone by id
-
-
-    // @TODO Delete a stone
-
-
+    @DeleteMapping("/{id}")
+    public void deleteStoneById(@PathVariable String id) {
+        stoneService.deleteStone(id);
+    }
 }
