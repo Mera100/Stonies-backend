@@ -4,12 +4,14 @@ import life.majd.stonies.domain.Stone;
 import life.majd.stonies.repository.StoneRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
 @RequiredArgsConstructor
 @Slf4j
+@Service
 public class StoneServiceImpl implements StoneService {
 
     private final StoneRepository stoneRepository;
