@@ -32,11 +32,10 @@ public class Stone {
     private double longitude;
     private Integer rating;
     private List<Comment> comments;
-    private LocalDate happendAt;
+    private LocalDate happenedAt;
     private LocalDateTime createdAt = LocalDateTime.now();
     private String authorId;
     private String imageUrl;
     private Set<String> tags;
-
 
 }
