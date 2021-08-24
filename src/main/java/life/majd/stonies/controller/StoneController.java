@@ -3,6 +3,7 @@ package life.majd.stonies.controller;
 import life.majd.stonies.domain.Comment;
 import life.majd.stonies.domain.Stone;
 import life.majd.stonies.service.StoneService;
+import life.majd.stonies.util.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class StoneController {
 
     private final StoneService stoneService;
+    private final JwtUtil jwtUtil;
 
     @GetMapping
     public List<Stone> getAllStone() {
@@ -42,14 +44,14 @@ public class StoneController {
 
     @PostMapping("/{stoneId}/upvote")
     public void upVoteStone(@PathVariable String stoneId) {
-        //TODO add username fetching from jwt
+        String currentUsername = jwtUtil.getCurrentUsername();
         stoneService.upVoteStoneById(stoneId, "userId");
     }
 
     @PostMapping("/{stoneId}/downvote")
     public void downVoteStone(@PathVariable String stoneId) {
-        //TODO add username fetching from jwt
-        stoneService.downVoteStoneById(stoneId, "userId");
+        String currentUsername = jwtUtil.getCurrentUsername();
+        stoneService.downVoteStoneById(stoneId, currentUsername);
     }
 
 
