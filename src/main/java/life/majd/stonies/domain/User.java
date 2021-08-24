@@ -5,13 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Set;
 
 import static java.time.LocalDateTime.now;
 
 @Data
+@Document
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
@@ -24,8 +27,8 @@ public class User {
     private String username;
     @NonNull
     private String password;
-    private final LocalDateTime joinedAt = now();
-    private final ArrayList<Role> roles = new ArrayList();
-
-
+    private Set<String> upVotedStones;
+    private Set<String> downVotedStones;
+    private LocalDateTime joinedAt = now();
+    private ArrayList<Role> roles = new ArrayList();
 }
